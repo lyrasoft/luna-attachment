@@ -1,0 +1,19 @@
+{
+    "name": "lyrasoft/attachment",
+    "description": "LYRASOFT attachment package",
+    "type": "windwalker-package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Lyrasoft\\Attachment\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chokeslam",
+            "email": "chokeslam5608@gmail.com"
+        }
+    ],
+    "minimum-stability": "beta",
+    "require": {}
+}

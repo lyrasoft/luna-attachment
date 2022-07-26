@@ -28,6 +28,13 @@ $name ??= 'attachments';
     <x-attachment-list
         :items="$items"
         :insertBtn="$insertBtn"
+        >
+        @if ($buttons ?? null)
+        <x-slot name="buttons">
+            @scope($item, $i)
+            {!! $buttons(item: $item, i: $i) !!}
+        </x-slot>
+        @endif
     ></x-attachment-list>
 
     <x-attachment-uploader

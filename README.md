@@ -1,6 +1,6 @@
 # LYRASOFT Attachment Uploader Package
 
-![screenshot 2022-01-13 下午04 01 08](https://user-images.githubusercontent.com/34531644/149287418-4de6ef36-85b3-4610-9511-f85c1a25ea96.png)
+![screenshot 2022-01-13 下午04 01 08](https://user-images.githubusercontent.com/34531644/180942543-b1cdd90e-e743-46af-9888-053a2388d9af.png)
 
 ## 安裝
 

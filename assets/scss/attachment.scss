@@ -1,0 +1,64 @@
+// Part of earth file.
+.c-attachment-uploader {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-height: 100px;
+  cursor: pointer;
+
+  input {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+    opacity: 0;
+    height: 100%;
+    cursor: pointer;
+
+    &.hover + label {
+      border-color: #333;
+    }
+  }
+
+  label {
+    position: relative;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    padding: .375rem .75rem;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    height: 100px;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    transition: border-color .3s;
+    cursor: pointer;
+
+    > div {
+      display: inline-block;
+      width: 100%;
+    }
+  }
+
+  label::after {
+    content: none !important;
+  }
+}
+
+.c-attachment-list {
+
+  &__item {
+    transition: all 0.3s ease-in-out;
+
+    &.hide {
+      height: 0;
+      visibility: collapse;
+    }
+  }
+}

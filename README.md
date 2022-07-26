@@ -47,11 +47,12 @@ $asset->js('vendor/lyrasoft/attachment/dist/attachment.min.js');
 
 ### Options
 
-|name | require | Desc |
-|---|---|---|
-| items | true | 提供已上傳檔案列表做使用
-| insertBtn| false| 插入文章的btn
-| accept| false| 限制檔案類型
+| name      | require     | Desc |
+|-----------|-------------|---|
+| name      | `attachments` | 欄位名稱，會自動後綴 `[]`
+| items     | true        | 提供已上傳檔案列表做使用
+| insertBtn | false       | 插入文章的btn
+| accept    | false       | 限制檔案類型
 
 如果要單獨使用 檔案列表 或是 上傳Input的話 也可以單獨使用
 
@@ -59,6 +60,20 @@ $asset->js('vendor/lyrasoft/attachment/dist/attachment.min.js');
 <x-attachment-list :items="$attachments" :insertBtn="true"></x-attachment-list>
 
 <x-attachment-list :options="$options"></x-attachment-list>
+```
+
+## Slot 
+
+如果你想自訂額外的按鈕的動作，可以用 `buttons` slot
+
+```
+        <x-attachment-field :items="$attachments">
+            <x-slot name="buttons">
+                @scope($item, $i)
+               
+                Do anything with $item
+            </x-slot>
+        </x-attachment-field>
 ```
 
 ### 備註

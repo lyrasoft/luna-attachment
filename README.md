@@ -5,7 +5,7 @@
 ## 安裝
 
 ```shell
-composer require lyrasoft/attachment-uploader
+composer require lyrasoft/attachment
 ```
 
 需要更改 mig、entity、repo時可複製出來

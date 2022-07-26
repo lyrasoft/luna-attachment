@@ -11,6 +11,7 @@ $attributes = $attributes->class('c-attachment-field')
             'items',
             'insertBtn',
             'accept',
+            'name',
         ]
     );
 
@@ -19,6 +20,8 @@ $insertBtn = $insertBtn ?? false;
 $options = [
     'accept' => $accept ?? false,
 ];
+
+$name ??= 'attachments';
 ?>
 
 <div {!! $attributes !!}>
@@ -28,5 +31,6 @@ $options = [
     ></x-attachment-list>
 
     <x-attachment-uploader
+        :name="$name"
         :options="$options"></x-attachment-uploader>
 </div>

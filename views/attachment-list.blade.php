@@ -16,7 +16,7 @@ $attributes = $attributes->class('c-attachment-list')
 $insertBtn = $insertBtn ?? false;
 ?>
 
-<div {!! $attributes !!}>
+<div uni-attachment-list {!! $attributes !!}>
 
     <table class="table table-borderless">
         <theader>
@@ -43,7 +43,7 @@ $insertBtn = $insertBtn ?? false;
                                 data-bs-toggle="tooltip" data-bs-placement="top" title="插入到文章中"
                                 data-href="{{ $item->path }}"
                                 data-filename="{{ $item->title }}"
-                                data-insert-btn>
+                                data-insert-btn="{{ is_string($insertBtn) ? $insertBtn : '' }}">
                                 <i class="fa fa-sign-in-alt"></i>
                             </button>
                         </td>

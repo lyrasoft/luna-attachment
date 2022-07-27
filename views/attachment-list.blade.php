@@ -27,20 +27,27 @@ $insertBtn = $insertBtn ?? false;
         </theader>
 
         <tbody>
-        @foreach($items as $item)
+        @foreach($items as $i => $item)
             <tr class="c-attachment-list__item">
                 <td>{{ $item->title }}</td>
-                <td width="15%">{{ round(($item->size/1000000), 2) }} MB</td>
-                @if($insertBtn)
-                    <td width="1%">
-                        <button type="button" class="btn btn-sm btn-outline-danger"
-                            data-bs-toggle="tooltip" data-bs-placement="top" title="插入到文章中"
-                            data-href="{{ $item->path }}"
-                            data-filename="{{ $item->title }}"
-                            data-insert-btn>
-                            <i class="fa fa-sign-in-alt"></i>
-                        </button>
+                <td width="15%">{{ round(($item->size / 1000000), 2) }} MB</td>
+
+                @if ($buttons ?? '')
+                    <td width="">
+                        {!! $buttons(item: $item, i: $i) !!}
                     </td>
+                @else
+                    @if($insertBtn)
+                        <td width="1%">
+                            <button type="button" class="btn btn-sm btn-outline-danger"
+                                data-bs-toggle="tooltip" data-bs-placement="top" title="插入到文章中"
+                                data-href="{{ $item->path }}"
+                                data-filename="{{ $item->title }}"
+                                data-insert-btn>
+                                <i class="fa fa-sign-in-alt"></i>
+                            </button>
+                        </td>
+                    @endif
                 @endif
                 <td width="1%">
                     <button type="button" class="btn btn-sm btn-outline-secondary" data-remove-btn

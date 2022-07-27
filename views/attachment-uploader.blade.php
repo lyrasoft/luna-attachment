@@ -24,12 +24,15 @@ $attributes = $attributes->class('c-attachment-uploader d-flex flex-column')
     ->exceptProps(
         [
             'options',
+            'name'
         ]
     );
+
+$name ??= 'attachments';
 ?>
 
 <div id="accachment-uploader" {!! $attributes !!} data-options="{{ json_encode($options) }}">
-    <input id="input-attachment-files" name="attachment[]" multiple type="file" class="form-control">
+    <input id="input-attachment-files" name="{{ $name }}[]" multiple type="file" class="form-control">
     <label class="px-3 c-file-drag-input__label"
         for="input-attachment-files">
         <div class="label-text" data-overlay-label>

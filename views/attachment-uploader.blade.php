@@ -1,16 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
+namespace App\View;
+
+use Unicorn\Script\FormScript;
+use Windwalker\Core\Asset\AssetService;
+use Windwalker\Core\DateTime\ChronosService;
+use Windwalker\Core\Language\LangService;
+use Windwalker\Core\Pagination\Pagination;
+use Windwalker\Core\Router\Navigator;
+use Windwalker\Core\Application\AppContext;
+use Windwalker\Core\Attributes\ViewModel;
+use Windwalker\Core\Router\SystemUri;
+
+use function Windwalker\uid;
+
 /**
  * Global variables
  * --------------------------------------------------------------
- * @var $app           \Windwalker\Web\Application                 Global Application
- * @var $package       \Windwalker\Core\Package\AbstractPackage    Package object.
- * @var $view          \Windwalker\Data\Data                       Some information of this view.
- * @var $uri           \Windwalker\Uri\UriData                     Uri information, example: $uri->path
- * @var $datetime      \DateTime                                   PHP DateTime object of current time.
- * @var $helper        \Windwalker\Core\View\Helper\Set\HelperSet  The Windwalker HelperSet object.
- * @var $router        \Windwalker\Core\Router\PackageRouter       Router object.
- * @var $asset         \Windwalker\Core\Asset\AssetManager         The Asset manager.
+ * @var $app       AppContext      Global Application
+ * @var $view      ViewModel       Some information of this view.
+ * @var $uri       SystemUri       Uri information, example: $uri->path
+ * @var $chronos   ChronosService  PHP DateTime object of current time.
+ * @var $nav       Navigator       Router object.
+ * @var $asset     AssetService    The Asset service.
+ * @var $lang      LangService     The lang service.
  */
 
 /**
@@ -18,7 +33,7 @@
  * @var \Windwalker\Edge\Wrapper\SlotWrapper           $slot
  */
 
-declare(strict_types=1);
+$app->service(FormScript::class)->fileDrag();
 
 $attributes = $attributes->class('c-attachment-uploader d-flex flex-column')
     ->exceptProps(
@@ -29,15 +44,18 @@ $attributes = $attributes->class('c-attachment-uploader d-flex flex-column')
     );
 
 $name ??= 'attachments';
+$id ??= 'input-attachment-' . uid();
 ?>
 
-<div id="accachment-uploader" {!! $attributes !!} data-options="{{ json_encode($options) }}">
-    <input id="input-attachment-files" name="{{ $name }}[]" multiple type="file" class="form-control">
+<uni-file-drag {!! $attributes !!}  data-options="{{ json_encode($options) }}">
+    <input id="{{ $id }}" name="{{ $name }}[]"
+        multiple
+        type="file" class="form-control">
     <label class="px-3 c-file-drag-input__label"
-        for="input-attachment-files">
-        <div class="label-text" data-overlay-label>
+        data-overlay-label
+        for="{{ $id }}">
+        <span class="label-text" >
             <span class="fa fa-upload"></span>
-            @lang('unicorn.field.file.drag.placeholder.multiple')
-        </div>
+        </span>
     </label>
-</div>
+</uni-file-drag>

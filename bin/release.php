@@ -46,6 +46,7 @@ HELP;
 
         $this->out('Release version: ' . $targetVersion);
 
+        $this->compileAssets();
         $this->replaceDocblockTags($targetVersion);
 
         static::writeVersion($targetVersion);

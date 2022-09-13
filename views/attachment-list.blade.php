@@ -19,12 +19,12 @@ $insertBtn = $insertBtn ?? false;
 <div uni-attachment-list {!! $attributes !!}>
 
     <table class="table table-borderless">
-        <theader>
+        <thead>
             <tr>
                 <th>檔案名稱</th>
                 <th width="15%">大小</th>
             </tr>
-        </theader>
+        </thead>
 
         <tbody>
         @foreach($items as $i => $item)

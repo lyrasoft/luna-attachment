@@ -41,6 +41,7 @@ $attributes = $attributes->class('c-attachment-field')
             'accept',
             'name',
             'id',
+            'sortable',
         ]
     );
 
@@ -52,17 +53,29 @@ $options = [
 
 $name ??= 'attachments';
 $id ??= null;
+$sortable ??= false;
+
 ?>
 
 <div {!! $attributes !!}>
     <x-attachment-list
+        :id="$id . '-list'"
         :items="$items"
+        :name="$name"
         :insertBtn="$insertBtn"
+        :sortable="$sortable"
         >
         @if ($buttons ?? null)
         <x-slot name="buttons">
             @scope($item, $i)
             {!! $buttons(item: $item, i: $i) !!}
+        </x-slot>
+        @endif
+
+        @if ($input ?? null)
+        <x-slot name="buttons">
+            @scope($item, $i)
+            {!! $input(item: $item, i: $i) !!}
         </x-slot>
         @endif
     ></x-attachment-list>

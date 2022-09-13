@@ -10,15 +10,38 @@ import '@main';
 u.directive(
   'attachment-list',
   {
-    mounted(el, bindings) {
-      initAttachmentList(el);
+    mounted(el, { value }) {
+      initAttachmentList(el, JSON.parse(value));
     }
   }
 );
 
-function initAttachmentList(el) {
+function initAttachmentList(el, options) {
   const removeBtns = el.querySelectorAll('[data-remove-btn]');
   const insertBtns = el.querySelectorAll('[data-insert-btn]');
+
+  let sortable = options.sortable;
+
+  if (sortable) {
+    const defOptions = {
+      sort: true,
+      handle: '.c-handle',
+    };
+
+    if (typeof sortable !== 'object') {
+      sortable = {};
+    }
+
+    sortable = Object.assign(defOptions, sortable);
+    console.log(sortable);
+    u.import('@sortablejs').then(() => {
+      u.module(
+        el.querySelector('table tbody'),
+        'attachment.sortable',
+        (ele) => new Sortable(ele, sortable)
+      );
+    });
+  }
 
   // insert to editor
   insertBtns.forEach((btn) => {

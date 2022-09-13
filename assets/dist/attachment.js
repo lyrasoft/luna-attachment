@@ -1,9 +1,32 @@
 System.register(["@main"], function (_export, _context) {
   "use strict";
 
-  function initAttachmentList(el) {
+  function _typeof(obj) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (obj) { return typeof obj; } : function (obj) { return obj && "function" == typeof Symbol && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }, _typeof(obj); }
+
+  function initAttachmentList(el, options) {
     var removeBtns = el.querySelectorAll('[data-remove-btn]');
-    var insertBtns = el.querySelectorAll('[data-insert-btn]'); // insert to editor
+    var insertBtns = el.querySelectorAll('[data-insert-btn]');
+    var sortable = options.sortable;
+
+    if (sortable) {
+      var defOptions = {
+        sort: true,
+        handle: '.c-handle'
+      };
+
+      if (_typeof(sortable) !== 'object') {
+        sortable = {};
+      }
+
+      sortable = Object.assign(defOptions, sortable);
+      console.log(sortable);
+      u["import"]('@sortablejs').then(function () {
+        u.module(el.querySelector('table tbody'), 'attachment.sortable', function (ele) {
+          return new Sortable(ele, sortable);
+        });
+      });
+    } // insert to editor
+
 
     insertBtns.forEach(function (btn) {
       btn.addEventListener('click', function (e) {
@@ -29,15 +52,10 @@ System.register(["@main"], function (_export, _context) {
   return {
     setters: [function (_main) {}],
     execute: function () {
-      /**
-       * Part of earth project.
-       *
-       * @copyright  Copyright (C) 2022 __ORGANIZATION__.
-       * @license    __LICENSE__
-       */
       u.directive('attachment-list', {
-        mounted: function mounted(el, bindings) {
-          initAttachmentList(el);
+        mounted: function mounted(el, _ref) {
+          var value = _ref.value;
+          initAttachmentList(el, JSON.parse(value));
         }
       });
     }

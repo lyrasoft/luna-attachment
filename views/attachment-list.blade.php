@@ -59,6 +59,9 @@ $options = [
 
 <div uni-attachment-list="@json($options)" {!! $attributes !!}>
 
+    <input id="{{ $id }}-empty" name="{{ $name }}"
+        type="hidden" value="__EMPTY_ARRAY__">
+
     <table class="table table-borderless">
         <thead>
         <tr>

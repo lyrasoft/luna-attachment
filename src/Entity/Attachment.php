@@ -26,6 +26,7 @@ use Windwalker\ORM\Metadata\EntityMetadata;
  * The Attachment class.
  */
 #[Table('attachments', 'attachment')]
+#[\AllowDynamicProperties]
 class Attachment implements EntityInterface
 {
     use EntityTrait;

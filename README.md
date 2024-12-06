@@ -8,7 +8,13 @@
 composer require lyrasoft/attachment
 ```
 
-需要更改 mig、entity、repo時可複製出來
+然後複製 migration 檔案
+
+```shell
+php windwalker pkg:install lyrasoft/attachment -t migrations
+```
+
+如果需要更改 entity、repo 時可複製出來
 
 ```shell
 php windwalker pkg:install lyrasoft/attachment -t migrations -t entity -t attachment_modal

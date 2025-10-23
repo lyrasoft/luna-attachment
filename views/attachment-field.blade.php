@@ -13,6 +13,8 @@ use Windwalker\Core\Application\AppContext;
 use Windwalker\Core\Attributes\ViewModel;
 use Windwalker\Core\Router\SystemUri;
 
+use function Windwalker\uid;
+
 /**
  * Global variables
  * --------------------------------------------------------------
@@ -30,9 +32,6 @@ use Windwalker\Core\Router\SystemUri;
  * @var \Windwalker\Edge\Wrapper\SlotWrapper           $slot
  */
 
-$asset->css('vendor/lyrasoft/attachment/dist/attachment.min.css');
-$asset->js('vendor/lyrasoft/attachment/dist/attachment.min.js');
-
 $attributes = $attributes->class('c-attachment-field')
     ->exceptProps(
         [
@@ -49,6 +48,7 @@ $insertBtn = $insertBtn ?? false;
 
 $options = [
     'accept' => $accept ?? false,
+    'mutiple' => $mutiple ?? false,
 ];
 
 $name ??= 'attachments';
@@ -59,7 +59,7 @@ $sortable ??= false;
 
 <div {!! $attributes !!}>
     <x-attachment-list
-        :id="$id . '-list'"
+        :id="$id ? $id . '-list' : null"
         :items="$items"
         :name="$name"
         :insertBtn="$insertBtn"
@@ -81,7 +81,7 @@ $sortable ??= false;
     ></x-attachment-list>
 
     <x-attachment-uploader
-        :id="$id"
+        :input-id="$id ? 'input-' . $id : null"
         :name="$name"
         :options="$options"></x-attachment-uploader>
 </div>

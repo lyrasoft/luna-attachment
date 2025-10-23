@@ -16,8 +16,8 @@
     ],
     "minimum-stability": "beta",
     "require": {
-        "myclabs/php-enum": "^1.8",
-        "lyrasoft/luna": "^1.0||^2.0"
+        "php": ">=8.4.6",
+        "lyrasoft/luna": "^2.2"
     },
     "extra": {
         "windwalker":{
@@ -25,10 +25,12 @@
                 "Lyrasoft\\Attachment\\AttachmentPackage"
             ],
             "assets": {
-                "link": "assets/"
+                "vendors": {
+                    "@lyrasoft/attachment": "portal:./vendor/lyrasoft/attachment/assets"
+                }
             },
             "modules": [
-
+                "src/Module"
             ]
         }
     }

@@ -41,6 +41,7 @@ $attributes = $attributes->class('c-attachment-field')
             'name',
             'id',
             'sortable',
+            'height',
         ]
     );
 
@@ -49,6 +50,7 @@ $insertBtn = $insertBtn ?? false;
 $options = [
     'accept' => $accept ?? false,
     'multiple' => $multiple ?? false,
+    'height' => $height ?? 200,
 ];
 
 $name ??= 'attachments';

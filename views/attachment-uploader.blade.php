@@ -43,6 +43,8 @@ $attributes = $attributes->class('c-attachment-uploader custom-file c-file-drag-
         ]
     );
 
+$attributes['options'] = json_encode($options);
+
 $name ??= 'attachments';
 $inputId ??= 'input-attachment-' . uid();
 
@@ -50,7 +52,7 @@ $accept = $options['accept'] ?? null;
 $multiple = $options['multiple'] ?? false;
 ?>
 
-<uni-file-drag {!! $attributes !!}  data-options="{{ json_encode($options) }}">
+<uni-file-drag {!! $attributes !!}>
     <input id="{{ $inputId }}" name="{{ $name }}[]"
         type="file"
         data-field-input

@@ -48,7 +48,7 @@ $insertBtn = $insertBtn ?? false;
 
 $options = [
     'accept' => $accept ?? false,
-    'mutiple' => $mutiple ?? false,
+    'multiple' => $multiple ?? false,
 ];
 
 $name ??= 'attachments';
@@ -78,7 +78,7 @@ $sortable ??= false;
             {!! $input(item: $item, i: $i) !!}
         </x-slot>
         @endif
-    ></x-attachment-list>
+    </x-attachment-list>
 
     <x-attachment-uploader
         :input-id="$id ? 'input-' . $id : null"

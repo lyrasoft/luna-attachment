@@ -35,7 +35,7 @@ use function Windwalker\uid;
 
 $app->service(FormScript::class)->fileDrag();
 
-$attributes = $attributes->class('c-attachment-uploader d-flex flex-column position-relative')
+$attributes = $attributes->class('c-attachment-uploader custom-file c-file-drag-input')
     ->exceptProps(
         [
             'options',
@@ -47,14 +47,16 @@ $name ??= 'attachments';
 $inputId ??= 'input-attachment-' . uid();
 
 $accept = $options['accept'] ?? null;
-$mutiple = $options['mutiple'] ?? false;
+$multiple = $options['multiple'] ?? false;
 ?>
 
 <uni-file-drag {!! $attributes !!}  data-options="{{ json_encode($options) }}">
     <input id="{{ $inputId }}" name="{{ $name }}[]"
-        {{ $mutiple ? 'multiple' : '' }}
-        type="file" class="form-control"
-        accept="{{ $accept }}"
+        type="file"
+        data-field-input
+        class="form-control"
+        @attr('multiple', $multiple ?: null)
+        @attr('accept', $accept ?: null)
     >
     <label class="px-3 c-file-drag-input__label"
         data-overlay-label
